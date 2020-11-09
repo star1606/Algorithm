@@ -71,9 +71,8 @@ public class Array {
 		int[] testArray = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,
 				97 };
 
+		// 메소드가 메모리에 존재하지 않기 떄문에 메모리에 띄어주기 위해 new 한다 (heap영역)
 		Array arrayObject = new Array();
-
-		// static영역에 안에 있는 함수부터 먼저 실행되서. 메소드가 static이어야한다
 		System.out.println(arrayObject.binarySearch(testArray, 30, 4));
 
 	}
