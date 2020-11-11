@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class Array {
 
-	// 메소드에 static을 걸어줘야함..
-	public String binarySearch(int[] array, int target, int guess) {
+	public String binarySearch(int[] array, int target) {
 		// 배열하고 ArrayList는 다른 형태이다
 		// ArrayList<Integer> array 이거 쓰면 안됨..
 		// 배열은 Integer 안해도 됨!
+		// int guess로 매개변수 넣었는데 매개 변수를 넣을 필요가 없음 guess는 내가 지정하는게 아니라
+		// guess는 이진검색으로 max - min / 2 해서 나오는 값임
 
 		// 입력값은 array라고 부르는 배열, array의 요소의 개수 n, 검색 대상의 수 target입니다.
 		// 결과값은 array 속 target의 인덱스 값입니다.
@@ -19,39 +20,56 @@ public class Array {
 		int min = 0;
 		// int max = n - 1;
 		int max = array.length;
-		System.out.println("처음max값: " + max);
+		int guess = (max-min)/2;
+		
+		System.out.println("초기 target값: " + target);
+		System.out.println("초기 guess 값: " + guess);
+		System.out.println("초기 min 값: " + min);
+		System.out.println("초기 max 값: " + max);
 		while (true) {
 			try {
 				Thread.sleep(3000);
 
-				System.out.println("실행?");
-				System.out.println("target값: " + target);
-				System.out.println("guess 값: " + guess);
-				System.out.println("min 값: " + min);
-				System.out.println("max 값: " + max);
-
 				if (max < min) {
+					System.out.println("max < min 인 경우");
 					return target + "이 " + array + "에 존재하지 않습니다 -1";
 
+				}else if (max > min) {
+					
+					if (array[guess] == target) {
+						System.out.println("guess와 타겟 일치함");
+						return "타겟을 찾았습니다 guess: " + guess;
+					}
+
+					if (array[guess] < target) {
+						System.out.println("target이 array[guess]값보다 큼");
+						min = guess + 1;
+						System.out.println("min 값: " + min);
+						System.out.println("max 값: " + max);
+				
+						System.out.println("target이 클 때: " +guess);
+					} if(array[guess] > target) {
+						System.out.println("target이 array[guess]값보다 작음");
+						max = guess;
+						System.out.println("min 값: " + min);
+						System.out.println("max 값: " + max);
+						
+						System.out.println("target이 작을 때: " + guess);
+					}
+					
+					
+				} {
+					
+					
 				}
 
 				// Math.floor는 Double형에서 쓰는 함수이다.
 				// int에서는 자동으로 내림을 하기 때문에 쓸 필요 없다.
 				// guess = Math.floor((max-min)/2);
-				guess = (max - min) / 2;
+				// guess = (max - min) / 2;
 
 				// 왜 오류 뜨지?
-				if (array[guess] == target) {
-					return "타겟을 찾았습니다 guess: " + guess;
-				}
-
-				if (array[guess] < target) {
-					min = guess + 1;
-				}
-
-				if (array[guess] > target) {
-					max = guess - 1;
-				}
+				
 
 			} catch (InterruptedException e) {
 
@@ -73,7 +91,7 @@ public class Array {
 
 		// 메소드가 메모리에 존재하지 않기 떄문에 메모리에 띄어주기 위해 new 한다 (heap영역)
 		Array arrayObject = new Array();
-		System.out.println(arrayObject.binarySearch(testArray, 30, 4));
+		System.out.println(arrayObject.binarySearch(testArray, 30));
 
 	}
 
