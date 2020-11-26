@@ -1,4 +1,4 @@
-package algorithm.binearysearch;
+package algorithm;
 
 import java.util.ArrayList;
 
@@ -20,13 +20,18 @@ public class Array {
 		int min = 0;
 		// int max = n - 1;
 		int max = array.length;
-		int guess = (max-min)/2;
+		int guess = 0;
 		
-		System.out.println("초기 target값: " + target);
-		System.out.println("초기 guess 값: " + guess);
-		System.out.println("초기 min 값: " + min);
-		System.out.println("초기 max 값: " + max);
+	
 		while (true) {
+			guess = (max-min)/2;
+			System.out.println("target값: " + target);
+			System.out.println("min 값: " + min);
+			System.out.println("max 값: " + max);
+			System.out.println("guess 값: " + guess);
+			
+			
+		
 			try {
 				Thread.sleep(3000);
 
@@ -42,19 +47,18 @@ public class Array {
 					}
 
 					if (array[guess] < target) {
-						System.out.println("target이 array[guess]값보다 큼");
+						System.out.println("array[guess] < target");
+						System.out.println("target값: " + target + " array[guess]값: " + array[guess]);
 						min = guess + 1;
-						System.out.println("min 값: " + min);
-						System.out.println("max 값: " + max);
-				
-						System.out.println("target이 클 때: " +guess);
-					} if(array[guess] > target) {
-						System.out.println("target이 array[guess]값보다 작음");
-						max = guess;
-						System.out.println("min 값: " + min);
-						System.out.println("max 값: " + max);
+					
 						
-						System.out.println("target이 작을 때: " + guess);
+					} if(array[guess] > target) {
+						System.out.println("array[guess] > target");
+						System.out.println("target값: " + target + " array[guess]값: " + array[guess]);
+						max = guess -1;
+					
+					
+					
 					}
 					
 					
